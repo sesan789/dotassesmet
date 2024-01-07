@@ -1,0 +1,38 @@
+PROCEDURE dot_product(v1, v2, ps)
+VAR
+    i:INTEGER := 0;
+BEGIN
+    IF length(v1) != length(v2)
+        Write("Error: Vectors must have the same length.")
+        RETURN
+    END_IF
+
+    ps := 0
+
+    FOR i = 1 TO length(v1) DO
+        ps := ps + (v1[i] * v2[i])
+    END_FOR
+END
+
+
+ALGORITHM check_orthogonal_vectors
+    VAR
+        n:ARRAY_OF INTEGER[4];
+        ps:INTEGER;
+        v1,v2:ARRAY_OF INTEGER[4];
+    BEGIN
+    Read(n)  // Number of vector pairs
+
+    FOR i = 1 TO n DO
+        Read(v1)  // First vector
+        Read(v2)  // Second vector
+
+        dot_product(v1, v2, ps)
+
+        IF (ps = 0) THEN
+            Write("Vectors are orthogonal.");
+        ELSE
+            Write("Vectors are not orthogonal.");
+        END_IF
+    END_FOR
+END
